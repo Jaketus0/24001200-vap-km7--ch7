@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login Page</h1>
+    <form action="/login" method="post">
+        <div>
+            <label for="phoneNum">Phone Number: </label>
+            <input type="number" name="phoneNum" id="phoneNum" required>
+        </div>
+        <div>
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div><a href="http://localhost:3000/forget-password">forget password ?</a></div>
+        <div><a href="http://localhost:3000/register">Create account</a></div>
+        <div>
+            <input type="submit" value="Login">
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <h1>Register Page</h1>
+    <form id="notificationForm" action="/register" method="post">
+        <div>
+            <label for="name">Name: </label>
+            <input type="text" name="name" id="name" required>
+        </div>
+        <div>
+            <label for="email">Email: </label>
+            <input type="text" name="email" id="email" required>
+        </div>
+        <div>
+            <label for="phoneNum">Phone Number: </label>
+            <input type="number" name="phoneNum" id="phoneNum" required>
+        </div>
+        <div>
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <div id="login"><a href="http://localhost:3000/login">Login</a></div>
+        <div>
+            <input type="submit" value="Register">
+        </div>
+        <script>
+            document.getElementById('registerForm').addEventListener('submit', async function (event) {
+                event.preventDefault(); 
+    
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    password: document.getElementById('password').value,
+                };
+    
+                try {
+                    const response = await fetch('/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData),
+                    });
+    
+                    const result = await response.json();
+    
+                    if (response.ok) {
+                        const notification = document.getElementById('notification');
+                        notification.style.display = 'block';
+                        notification.innerHTML = result.notification;
+                    } else {
+                        alert(result.error || 'Gagal mendaftar. Silahkan coba lagi.');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Terjadi kesalahan saat mendaftar.');
+                }
+            });
+        </script>
+    </form>
+</body>
+</html>
