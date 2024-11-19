@@ -48,6 +48,10 @@ const socketIdStore = {};
 io.on('connection', (socket) => {
     console.log('User connected:', socket.id);
     
+    socket.on('notification', (message) => {
+        console.log(message);  
+        alert(message); 
+    });
     socket.emit('notification', 'Welcome to the app!');
     
     socket.on('register-session', (userId) => {
